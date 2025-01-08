@@ -76,7 +76,7 @@ void loop() {
 ## Industrial Automation Experience
 
 ### Robotics Data Acquisition System at Paslin
-**Technologies:** Python, Siemens Process Simulate, Teamcenter
+**Technologies:** Python, Siemens Process Simulate, Teamcenter, autoCAD
 **Duration:** Summer 2024
 
 **System Overview:**
