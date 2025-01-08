@@ -5,48 +5,73 @@
 
 ### Space Invaders Game System
 **Technologies:** Arduino Uno, C++, LED Matrix Display, Sensors
-**Duration:** Fall 2023
+**Duration:** September 2023 - January 2024
 
 **System Architecture:**
 - Microcontroller: Arduino Uno
-- Input Devices: Potentiometer for movement control, Push button for action trigger
-- Display: 16x32 RGB LED Matrix Panel
-- Interface: Custom-designed breadboard circuit
+- Input Devices: 
+  - Potentiometer (Analog Pin 5) for player movement
+  - Push button (Digital Pin 10) for firing control
+- Display: Adafruit 16x32 RGB Matrix Panel
+  - CLK, LAT, OE pins for timing control
+  - RGB color management using Color333 system
+- Interface: Custom breadboard circuit integration
 
-**Technical Implementation:**
+**Core Implementation Details:**
 ```cpp
-// Example of sensor data processing with smoothing
-class InputController {
-private:
-    const int POT_PIN = A5;
-    const int BUTTON_PIN = 10;
-    float currentPosition = 0;
-    
+// Color Management System
+class Color {
 public:
-    void updatePosition() {
-        // Read and process potentiometer input with smoothing
-        int rawValue = analogRead(POT_PIN);
-        float targetPosition = map(rawValue, 0, 1023, 0, SCREEN_WIDTH);
-        currentPosition = (currentPosition * 0.7) + (targetPosition * 0.3);
+    int red, green, blue;
+    Color(int r, int g, int b) {
+        red = r;
+        green = g;
+        blue = b;
+    }
+    uint16_t to_333() const {
+        return matrix.Color333(red, green, blue);
     }
 };
+
+// Game Object System
+class Game {
+private:
+    int level;
+    unsigned long time;
+    Player player;
+    Cannonball ball;
+    Invader enemies[NUM_ENEMIES];
+    
+public:
+    void update(int potentiometer_value, bool button_pressed) {
+        // Real-time game state updates
+        // Input processing and display refresh
+    }
+};
+
+// Main Control Loop
+void loop() {
+    int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
+    bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
+    game.update(potentiometer_value, button_pressed);
+}
 ```
 
-**Key Technical Achievements:**
-1. Sensor Integration
-   - Implemented real-time potentiometer reading with data smoothing
-   - Developed debouncing solution for button input
-   - Created efficient polling system for input devices
+**Technical Implementation Highlights:**
+1. Object-Oriented Design
+   - Implemented distinct classes for Game, Player, Invader, and Cannonball
+   - Created robust Color management system for RGB LED control
+   - Developed modular system architecture for maintainability
 
-2. Display System
-   - Engineered refresh rate optimization for smooth animation
-   - Implemented efficient sprite rendering system
-   - Managed memory constraints for display buffer
+2. Hardware Integration
+   - Configured multiple GPIO pins for LED matrix control
+   - Implemented analog input processing for smooth player movement
+   - Managed display refresh timing for optimal performance
 
-3. Circuit Design
-   - Created complete circuit integration on breadboard
-   - Implemented proper power distribution
-   - Managed ground connections for multiple components
+3. Real-time Processing
+   - Developed efficient game loop with consistent update cycles
+   - Implemented input smoothing for precise control
+   - Optimized display updates for fluid animation
 
 ## Industrial Automation Experience
 
