@@ -5,6 +5,7 @@
 
 ### Space Invaders Game System
 **Technologies:** Arduino Uno, C++, LED Matrix Display, Sensors
+
 **Duration:** September 2023 - January 2024
 
 **System Architecture:**
@@ -77,6 +78,7 @@ void loop() {
 
 ### Robotics Data Acquisition System at Paslin
 **Technologies:** Python, Siemens Process Simulate, Teamcenter, autoCAD
+
 **Duration:** Summer 2024
 
 **System Overview:**
